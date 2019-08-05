@@ -1,4 +1,5 @@
 import sqlite3
+import logging
 from models.model import Model
 import mysql.connector as mcon
 from conf.mysql import get_mysql_db_info
@@ -34,7 +35,9 @@ class Product(Model):
         return product_id
 
     def delete_item(self, id):
-        stmt = "DELETE FROM {} WHERE id=%d".format(self.table)
+        logging.info("Start removing product with id {}".format(id))
+        self.product_category.delete_by_product_id(id)
+        stmt = "DELETE FROM {} WHERE id=%s".format(self.table)
         args = (id,)
         cursor = self.mydb.cursor()
         cursor.execute(stmt, args)
@@ -55,3 +58,13 @@ class Product(Model):
 
     def set_category(self, product_id, category_id):
         self.product_category.add_item(product_id, category_id)
+
+    def update_product(self, id, field, new_value):
+        logging.info("Will update {} field of product with id {} to {}".format(field, id, new_value))
+        stmt = "UPDATE {} SET {}=%s WHERE id=%s".format(self.table, field)
+        args = (new_value, id,)
+        cursor = self.mydb.cursor()
+        cursor.execute(stmt, args)
+        product_id = cursor.lastrowid
+        self.mydb.commit()
+        return product_id

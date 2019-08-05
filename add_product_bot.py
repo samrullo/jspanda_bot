@@ -72,6 +72,18 @@ def build_product_inline_keyboard(product_record):
     return json.dumps(reply_markup)
 
 
+def build_edit_product_choices_inline_keyboard(product_record):
+    keyboard = \
+        [
+            [{'text': 'Edit product name', 'callback_data': 'edit_product|name|{}'.format(product_record[0])}],
+            [{'text': 'Edit product description', 'callback_data': 'edit_product|description|{}'.format(product_record[0])}],
+            [{'text': 'Edit product price', 'callback_data': 'edit_product|price|{}'.format(product_record[0])}],
+            [{'text': 'Edit product photo', 'callback_data': 'edit_product|photo|{}'.format(product_record[0])}]
+        ]
+    reply_markup = {'inline_keyboard': keyboard}
+    return json.dumps(reply_markup)
+
+
 def send_product_info(product_record, chat_id):
     msg = "Product id : {product_id} \n Product name : {name} \n Product description : {description} \n Product price : {price} \n".format(product_id=product_record[0],
                                                                                                                                            name=product_record[1],
@@ -221,9 +233,35 @@ def handle_updates(updates, what_to_do):
             # handle edit product
             if 'edit_product' in text:
                 logging.info("User chose to edit product {}".format(text))
-                product_id = int(text.split('|')[1])
-
-
+                if len(text.split('|')) == 2:
+                    logging.info("Edit product initiated. Will send message with choices to ask user what to edit.")
+                    product_id = int(text.split('|')[1])
+                    product_record = product.get_item(product_id)
+                    reply_markup = build_edit_product_choices_inline_keyboard(product_record)
+                    send_message("Choose what you want to edit", chat_id, reply_markup)
+                elif len(text.split('|')) == 3:
+                    product_id = int(text.split('|')[-1])
+                    action = text.split('|')[1]
+                    if action in ('name', 'description', 'price'):
+                        send_message('Enter new {}'.format(action), chat_id)
+                        return 'update_product|{}|{}'.format(action, product_id)
+                    else:
+                        send_message("Upload new photo", chat_id)
+                        return 'update_product|{}|{}'.format(action, product_id)
+            if what_to_do:
+                if 'update_product' in what_to_do:
+                    product_id = int(what_to_do.split('|')[-1])
+                    field = what_to_do.split('|')[1]
+                    if field in ('name', 'description', 'price'):
+                        new_value = text
+                        product.update_product(product_id, field, new_value)
+                        updated_product_record = product.get_item(product_id)
+                        send_product_info(updated_product_record, chat_id)
+                    elif field == 'photo':
+                        new_value = update['message']['photo'][-1]['file_id']
+                        product.update_product(product_id, field, new_value)
+                        updated_product_record = product.get_item(product_id)
+                        send_product_info(updated_product_record, chat_id)
         except KeyError as e:
             print(e)
 

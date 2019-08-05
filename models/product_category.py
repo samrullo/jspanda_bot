@@ -28,6 +28,13 @@ class Product_category(Model):
         cursor.execute(stmt, args)
         self.mydb.commit()
 
+    def delete_by_product_id(self, product_id):
+        stmt = "DELETE FROM {} WHERE product_id=%s".format(self.table)
+        args = (product_id,)
+        cursor = self.mydb.cursor()
+        cursor.execute(stmt, args)
+        self.mydb.commit()
+
     def get_items(self):
         stmt = "SELECT id,product_id,category_id FROM {}".format(self.table)
         cursor = self.mydb.cursor()
