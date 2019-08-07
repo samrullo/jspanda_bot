@@ -1,10 +1,12 @@
 from flask import Flask
 from flask import request
+from conf.appconf import Config
 from flask import session
 import json
 from add_product_bot import handle_update
 
 app = Flask(__name__)
+app.config.from_object(Config)
 
 
 @app.route('/', methods=['POST', 'GET'])
