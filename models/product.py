@@ -1,4 +1,3 @@
-import sqlite3
 import logging
 from models.model import Model
 import mysql.connector as mcon
@@ -11,7 +10,6 @@ class Product(Model):
         super().__init__()
         self.dbname = dbname
         self.table = 'product'
-        self.conn = sqlite3.connect(dbname)
         self.product_category = product_category
         self.name = ""
         self.photo = ""
@@ -22,8 +20,7 @@ class Product(Model):
 
     def setup(self):
         stmt = "CREATE TABLE IF NOT EXISTS {}(id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), description VARCHAR(255), price INT, photo VARCHAR(255))".format(self.table)
-        self.conn.execute(stmt)
-        self.conn.commit()
+        return stmt
 
     def add_item(self, name=None, description=None, price=None, photo=None):
         stmt = "INSERT INTO {}(name, description, price, photo) VALUES (%s,%s,%s,%s)".format(self.table)

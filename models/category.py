@@ -1,4 +1,3 @@
-import sqlite3
 from models.model import Model
 
 
@@ -7,14 +6,12 @@ class Category(Model):
         super().__init__()
         self.dbname = dbname
         self.table = 'category'
-        self.conn = sqlite3.connect(dbname)
         self.name = ""
         self.description = ""
 
     def setup(self):
         stmt = "CREATE TABLE IF NOT EXISTS {}(id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), description VARCHAR(255))".format(self.table)
-        self.conn.execute(stmt)
-        self.conn.commit()
+        return stmt
 
     def add_item(self, name=None, description=None):
         stmt = "INSERT INTO {}(name, description) VALUES (%s,%s)".format(self.table)
