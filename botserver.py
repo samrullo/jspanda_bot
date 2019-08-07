@@ -20,13 +20,8 @@ def hello():
     update = request.data.decode('utf8')
     update = json.loads(update)
     logging.info("what_to_do before : {}".format(session.get('what_to_do')))
-    what_to_do = session.get('what_to_do')
     session['what_to_do'] = handle_update(update, session.get('what_to_do'))
-    while session.get('what_to_do') and session.get('what_to_do') != what_to_do:
-        logging.info("what_to_do before : {}".format(session.get('what_to_do')))
-        what_to_do = session.get('what_to_do')
-        session['what_to_do'] = handle_update(update, session.get('what_to_do'))
-        logging.info("what_to_do after: {}".format(session.get('what_to_do')))
+    session['what_to_do'] = handle_update(update, session.get('what_to_do'))
     logging.info("what_to_do after: {}".format(session.get('what_to_do')))
     return ""  # it is important as this return 200 success response to telegram
 

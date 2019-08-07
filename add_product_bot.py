@@ -8,9 +8,6 @@ from models.productcategory import ProductCategory
 from conf.tokens import get_token
 import logging
 
-FORMAT = '%(asctime)-15s %(message)s'
-logging.basicConfig(format=FORMAT, level=logging.INFO)
-_logger = logging.getLogger(__file__)
 
 TOKEN = get_token()
 URL = "https://api.telegram.org/bot{}/".format(TOKEN)
@@ -430,5 +427,5 @@ def main():
 
 
 if __name__ == '__main__':
-    _logger.info("Start the show...")
+    logging.info("Start the show...")
     main()
