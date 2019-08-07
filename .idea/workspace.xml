@@ -4,6 +4,7 @@
     <list default="true" id="534e6bf0-2610-4c82-b426-a5663b7e196f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/botserver.py" beforeDir="false" afterPath="$PROJECT_DIR$/botserver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/appconf.py" beforeDir="false" afterPath="$PROJECT_DIR$/conf/appconf.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,10 +71,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/add_product_bot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="37" lean-forward="true" selection-start-line="10" selection-end-line="12" selection-end-column="37" />
+            <state relative-caret-position="2221">
+              <caret line="427" lean-forward="true" selection-start-line="427" selection-end-line="427" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#4054#12383#0" />
               </folding>
             </state>
           </provider>
@@ -82,20 +84,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/botserver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="44" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
+            <state relative-caret-position="238">
+              <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/conf/appconf.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="9" lean-forward="true" selection-start-column="9" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -147,12 +140,12 @@
         <option value="$PROJECT_DIR$/models/model.py" />
         <option value="$PROJECT_DIR$/conf/messages.py" />
         <option value="$PROJECT_DIR$/conf/tokens.py" />
-        <option value="$PROJECT_DIR$/add_product_bot.py" />
         <option value="$PROJECT_DIR$/botserver.wsgi" />
         <option value="$PROJECT_DIR$/models/product_category.py" />
         <option value="$PROJECT_DIR$/models/productcategory.py" />
         <option value="$PROJECT_DIR$/models/category.py" />
         <option value="$PROJECT_DIR$/models/product.py" />
+        <option value="$PROJECT_DIR$/add_product_bot.py" />
         <option value="$PROJECT_DIR$/conf/appconf.py" />
         <option value="$PROJECT_DIR$/botserver.py" />
       </list>
@@ -318,7 +311,21 @@
       <option name="project" value="LOCAL" />
       <updated>1565182989403</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="jspanda_bot">
+      <created>1565183271140</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1565183271140</updated>
+    </task>
+    <task id="LOCAL-00012" summary="jspanda_bot">
+      <created>1565187649084</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1565187649084</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TodoView">
@@ -449,27 +456,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/conf/appconf.py">
+    <entry file="file://$PROJECT_DIR$/add_product_bot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="9" lean-forward="true" selection-start-column="9" selection-end-column="9" />
+        <state relative-caret-position="2221">
+          <caret line="427" lean-forward="true" selection-start-line="427" selection-end-line="427" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#4054#12383#0" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/add_product_bot.py">
+    <entry file="file://$PROJECT_DIR$/conf/appconf.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="37" lean-forward="true" selection-start-line="10" selection-end-line="12" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="4" column="98" lean-forward="true" selection-start-line="4" selection-start-column="98" selection-end-line="4" selection-end-column="98" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/botserver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="44" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
+        <state relative-caret-position="238">
+          <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>

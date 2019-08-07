@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import request
-from conf.appconf import Config
+import os
 from flask import session
 import json
 import logging
@@ -12,7 +12,7 @@ _logger = logging.getLogger(__file__)
 from add_product_bot import handle_update
 
 app = Flask(__name__)
-app.config.from_object(Config)
+app.secret_key = os.environ.get('SECRET_KEY')
 
 
 @app.route('/', methods=['POST', 'GET'])
@@ -24,6 +24,11 @@ def hello():
     session['what_to_do'] = handle_update(update, session.get('what_to_do'))
     logging.info("what_to_do after: {}".format(session.get('what_to_do')))
     return ""  # it is important as this return 200 success response to telegram
+
+
+@app.route('/show_session')
+def show_session():
+    return "what_to_do session : {}".format(session.get('what_to_do'))
 
 
 if __name__ == '__main__':
