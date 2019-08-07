@@ -1,10 +1,10 @@
 import logging
 from models.model import Model
-from models.product_category import Product_category
+from models.productcategory import ProductCategory
 
 
 class Product(Model):
-    def __init__(self, product_category: Product_category = None):
+    def __init__(self, product_category: ProductCategory = None):
         super().__init__()
         self.table = 'product'
         self.product_category = product_category
@@ -14,10 +14,6 @@ class Product(Model):
         self.price = 0
         self.category_id = 0
         self.last_product_id = 0
-
-    def setup(self):
-        stmt = "CREATE TABLE IF NOT EXISTS {}(id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), description VARCHAR(255), price INT, photo VARCHAR(255))".format(self.table)
-        return stmt
 
     def add_item(self, name=None, description=None, price=None, photo=None):
         stmt = "INSERT INTO {}(name, description, price, photo) VALUES (%s,%s,%s,%s)".format(self.table)

@@ -8,10 +8,6 @@ class Category(Model):
         self.name = ""
         self.description = ""
 
-    def setup(self):
-        stmt = "CREATE TABLE IF NOT EXISTS {}(id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), description VARCHAR(255))".format(self.table)
-        return stmt
-
     def add_item(self, name=None, description=None):
         stmt = "INSERT INTO {}(name, description) VALUES (%s,%s)".format(self.table)
         args = (name, description)

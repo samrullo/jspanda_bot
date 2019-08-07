@@ -1,14 +1,10 @@
 from models.model import Model
 
 
-class Product_category(Model):
+class ProductCategory(Model):
     def __init__(self):
         super().__init__()
         self.table = 'product_category'
-
-    def setup(self):
-        stmt = "CREATE TABLE IF NOT EXISTS {}(id INT AUTO_INCREMENT PRIMARY KEY, product_id INTEGER, category_id INTEGER)".format(self.table)
-        return stmt
 
     def add_item(self, product_id=None, category_id=None):
         stmt = "INSERT INTO {}(product_id, category_id) VALUES (%s,%s)".format(self.table)

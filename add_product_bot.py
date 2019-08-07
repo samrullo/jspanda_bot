@@ -4,7 +4,7 @@ import urllib
 import time
 from models.product import Product
 from models.category import Category
-from models.product_category import Product_category
+from models.productcategory import ProductCategory
 from conf.tokens import get_token
 import logging
 
@@ -14,7 +14,7 @@ _logger = logging.getLogger(__file__)
 
 TOKEN = get_token()
 URL = "https://api.telegram.org/bot{}/".format(TOKEN)
-product_category = Product_category()
+product_category = ProductCategory()
 product = Product(product_category=product_category)
 category = Category()
 
