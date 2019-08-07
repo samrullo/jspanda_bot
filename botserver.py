@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import request
+from flask import session
 import json
 from add_product_bot import handle_update
 
@@ -10,7 +11,7 @@ app = Flask(__name__)
 def hello():
     update = request.data.decode('utf8')
     update = json.loads(update)
-    handle_update(update)
+    session['what_to_do'] = handle_update(update, session.get('what_to_do'))
     return ""  # it is important as this return 200 success response to telegram
 
 
