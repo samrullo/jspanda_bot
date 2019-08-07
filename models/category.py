@@ -2,9 +2,8 @@ from models.model import Model
 
 
 class Category(Model):
-    def __init__(self, dbname='jspanda.sqlite'):
+    def __init__(self):
         super().__init__()
-        self.dbname = dbname
         self.table = 'category'
         self.name = ""
         self.description = ""

@@ -1,14 +1,11 @@
 import logging
 from models.model import Model
-import mysql.connector as mcon
-from conf.mysql import get_mysql_db_info
 from models.product_category import Product_category
 
 
 class Product(Model):
-    def __init__(self, dbname='jspanda.sqlite', product_category: Product_category = None):
+    def __init__(self, product_category: Product_category = None):
         super().__init__()
-        self.dbname = dbname
         self.table = 'product'
         self.product_category = product_category
         self.name = ""

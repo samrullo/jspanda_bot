@@ -2,9 +2,8 @@ from models.model import Model
 
 
 class Product_category(Model):
-    def __init__(self, dbname='jspanda.sqlite'):
+    def __init__(self):
         super().__init__()
-        self.dbname = dbname
         self.table = 'product_category'
 
     def setup(self):
