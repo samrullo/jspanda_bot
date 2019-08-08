@@ -12,7 +12,6 @@ _logger = logging.getLogger(__file__)
 from add_product_bot import handle_update
 
 app = Flask(__name__)
-app.secret_key = os.environ.get('SECRET_KEY')
 
 
 @app.route('/', methods=['POST', 'GET'])
