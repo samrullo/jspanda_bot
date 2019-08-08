@@ -12,10 +12,10 @@ from controllers.category_controller import CategoryController
 
 product_category = ProductCategory()
 product = Product(product_category=product_category)
-category = Category()
+category = Category(product_category)
 
 butil = BotUtil()
-categ_cont = CategoryController()
+categ_cont = CategoryController(category)
 
 
 def handle_update(update, what_to_do):
