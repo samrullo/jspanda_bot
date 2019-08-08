@@ -19,13 +19,16 @@ def hello():
     update = request.data.decode('utf8')
     update = json.loads(update)
 
-    with  open(os.path.relpath('session_file'), 'r') as fh:
+    with open(os.path.abspath('/var/www/jspanda_bot/session_file'), 'r') as fh:
         what_to_do = fh.readline()
         logging.info("what_to_do before : {}".format(what_to_do))
         what_to_do = handle_update(update, what_to_do)
         logging.info("what_to_do after: {}".format(what_to_do))
-    with open(os.path.relpath('session_file'), 'w') as fh:
-        fh.write(what_to_do)
+    with open(os.path.abspath('/var/www/jspanda_bot/session_file'), 'w') as fh:
+        if what_to_do:
+            fh.write(what_to_do)
+        else:
+            fh.write('nothing')
     return ""  # it is important as this return 200 success response to telegram
 
 
