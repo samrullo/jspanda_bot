@@ -22,10 +22,6 @@ class ProductController:
             butil.send_message("There are no products in database", chat_id)
 
     def create_product(self, chat_id, update, text, what_to_do):
-        if not what_to_do:
-            logging.info("newproduct command was passed, so will send message to ask for product name")
-            butil.send_message("Enter product name", chat_id)
-            return 'set_product_name'
         if what_to_do == 'set_product_name':
             logging.info("Was waiting for product name and user should have returned product name : {}".format(text))
             self.product.name = text
@@ -57,14 +53,18 @@ class ProductController:
             self.product.last_product_id = product_id
             logging.info("finished sending photo and setting last_product_id {}".format(self.product.last_product_id))
             logging.info("Will send prompt to choose categories.")
-            reply_markup = butil.build_categories_inline_keyboard(category.get_items())
+            reply_markup = butil.build_categories_inline_keyboard(self.category.get_items())
             butil.send_message("Choose category for the product", chat_id, reply_markup)
             return 'set_product_category'
         if what_to_do == 'set_product_category':
             logging.info("User should have sent category id with callback query : {}".format(text))
-            product.set_category(product.last_product_id, text)
-            msg = "Set product category.\n Product id : {} \n Category id : {} \n".format(product.last_product_id, text)
+            self.product.set_category(self.product.last_product_id, text)
+            msg = "Set product category.\n Product id : {} \n Category id : {} \n".format(self.product.last_product_id, text)
             butil.send_message(msg, chat_id)
+        else:
+            logging.info("newproduct command was passed, so will send message to ask for product name")
+            butil.send_message("Enter product name", chat_id)
+            return 'set_product_name'
 
     def product_edit_choose(self, chat_id, text):
         logging.info("User chose to edit product {}".format(text))

@@ -12,10 +12,6 @@ class CategoryController:
         self.category = category
 
     def create_category(self, chat_id, text, what_to_do):
-        if not what_to_do:
-            logging.info("newcategory command was passed, so will start process to set up new category. First will send message to ask for category name")
-            butil.send_message('Enter category name', chat_id)
-            return 'set_category_name'
         if what_to_do == 'set_category_name':
             logging.info("Was expecting category name, so will set category name")
             self.category.name = text
@@ -31,6 +27,10 @@ class CategoryController:
                                                                                                                                                      description=category_record[2]
                                                                                                                                                      )
             butil.send_message(msg, chat_id)
+        else:
+            logging.info("newcategory command was passed, so will start process to set up new category. First will send message to ask for category name")
+            butil.send_message('Enter category name', chat_id)
+            return 'set_category_name'
 
     def category_edit_choose(self, chat_id, text):
         logging.info("User chose to edit category {}".format(text))
