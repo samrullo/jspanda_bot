@@ -39,11 +39,11 @@ def handle_update(update, what_to_do):
 
         # handling new categories
         if text == '/newcategory':
-            categ_cont.create_category(chat_id, text, what_to_do)
+            return categ_cont.create_category(chat_id, text, what_to_do)
 
         # handling new product registration
         if text == '/newproduct':
-            product_cont.create_product(chat_id, update, text, what_to_do)
+            return product_cont.create_product(chat_id, update, text, what_to_do)
 
         # show all products
         if text == '/showproducts':
