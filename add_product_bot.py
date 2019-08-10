@@ -56,7 +56,7 @@ def handle_update(update, what_to_do):
 
         # handle edit product
         if 'edit_product' in text:
-            product_cont.product_edit_choose(chat_id, text)
+            return product_cont.product_edit_choose(chat_id, text)
 
         if what_to_do:
             if 'update_product' in what_to_do:
