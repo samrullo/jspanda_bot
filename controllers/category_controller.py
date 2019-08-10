@@ -11,6 +11,27 @@ class CategoryController:
     def __init__(self, category: Category):
         self.category = category
 
+    def create_category(self, chat_id, text, what_to_do):
+        if not what_to_do:
+            logging.info("newcategory command was passed, so will start process to set up new category. First will send message to ask for category name")
+            butil.send_message('Enter category name', chat_id)
+            return 'set_category_name'
+        if what_to_do == 'set_category_name':
+            logging.info("Was expecting category name, so will set category name")
+            self.category.name = text
+            butil.send_message("Enter category description", chat_id)
+            return 'set_category_description'
+        if what_to_do == 'set_category_description':
+            logging.info("Was expecting category description, so will set category description")
+            self.category.description = text
+            category_id = self.category.add_item(self.category.name, self.category.description)
+            category_record = self.category.get_item(category_id)
+            msg = "Recorded new category. \n Category id : {category_id} \n Category name : {name} \n Category Description : {description}\n".format(category_id=category_record[0],
+                                                                                                                                                     name=category_record[1],
+                                                                                                                                                     description=category_record[2]
+                                                                                                                                                     )
+            butil.send_message(msg, chat_id)
+
     def category_edit_choose(self, chat_id, text):
         logging.info("User chose to edit category {}".format(text))
         if len(text.split('|')) == 2:
@@ -48,7 +69,7 @@ class CategoryController:
             butil.send_message("There are no categories in database", chat_id)
 
     def remove_category(self, text):
-        logging.info("User chose to remove product {}".format(text))
+        logging.info("User chose to remove category {}".format(text))
         category_id = int(text.split('|')[1])
         category_record = self.category.get_item(category_id)
         self.category.delete_item(category_id)

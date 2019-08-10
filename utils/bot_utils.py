@@ -3,6 +3,7 @@ import requests
 import urllib
 import logging
 from conf.tokens import get_token
+from conf.tokens import get_telegraph_token
 
 
 class BotUtil:
@@ -10,6 +11,7 @@ class BotUtil:
         TOKEN = get_token()
         URL = "https://api.telegram.org/bot{}/".format(TOKEN)
         self.URL = URL
+        self.telegraph_url = """https://api.telegra.ph/createPage?access_token={}""".format(get_telegraph_token())
 
     def get_url(self, url):
         response = requests.get(url)
