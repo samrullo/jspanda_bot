@@ -38,11 +38,11 @@ def handle_update(update, what_to_do):
             butil.show_help_message(chat_id)
 
         # handling new categories
-        if text == '/newcategory' or what_to_do in ('set_category_name','set_category_description'):
+        if text == '/newcategory' or what_to_do in ('set_category_name', 'set_category_description'):
             return categ_cont.create_category(chat_id, text, what_to_do)
 
         # handling new product registration
-        if text == '/newproduct' or what_to_do in ('set_product_name', 'set_product_description', 'set_product_price', 'set_product_photo'):
+        if text == '/newproduct' or what_to_do in ('set_product_name', 'set_product_description', 'set_product_price', 'set_product_photo', 'set_product_category'):
             return product_cont.create_product(chat_id, update, text, what_to_do)
 
         # show all products
