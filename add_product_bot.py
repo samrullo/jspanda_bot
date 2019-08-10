@@ -17,7 +17,7 @@ category = Category(product_category)
 
 butil = BotUtil()
 categ_cont = CategoryController(category)
-product_cont = ProductController(product)
+product_cont = ProductController(product, category)
 
 
 def handle_update(update, what_to_do):
