@@ -84,10 +84,9 @@
                 <div data-role="panel" id="formula" data-display="overlay" data-position="right">
 
                     <h3>Formula when shipment is included in profit calculation:</h3>
-                    <p>px_with_profit = (px_before_tax * 1.08 + shipment_fee_per_kg * weight / 1000) * (1 + profit) / fx </p>
-
+                    <p>px_with_profit = (px_before_tax * (1 + tax) + shipment_fee_per_kg * weight / 1000) * (1 + profit) / fx </p>
                     <h3>Formula when shipment is excluded from profit calculation:</h3>
-                    <p>px_with_profit = ((px_before_tax * 1.08) * (1 + profit) + shipment_fee_per_kg * weight / 1000)/ fx </p>
+                    <p>px_with_profit = ((px_before_tax * (1 + tax)) * (1 + profit) + shipment_fee_per_kg * weight / 1000)/ fx </p>
                 </div>
             </div>
 
