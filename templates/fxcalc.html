@@ -31,9 +31,9 @@
                 var px_before_tax = $('#px_before_tax').val();
                 var px_with_profit = 0;
                 if (includeWeight) {
-                    px_with_profit = (px_before_tax * 1.08 + shipment_fee_per_kg * weight / 1000) * (1 + profit) / fx;
+                    px_with_profit = (px_before_tax * 1.1 + shipment_fee_per_kg * weight / 1000) * (1 + profit) / fx;
                 } else {
-                    px_with_profit = ((px_before_tax * 1.08) * (1 + profit) + shipment_fee_per_kg * weight / 1000) / fx;
+                    px_with_profit = ((px_before_tax * 1.1) * (1 + profit) + shipment_fee_per_kg * weight / 1000) / fx;
                 }
                 document.getElementById("px_with_profit").innerHTML = Math.round(px_with_profit);
             }
