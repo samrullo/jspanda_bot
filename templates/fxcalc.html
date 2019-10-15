@@ -15,15 +15,18 @@
             var fx = 100;
             var profit = 0.1;
             var includeWeight = true;
+            var tax=0;
             function change_parameters() {
                 shipment_fee_per_kg = $('#shipment_per_kg').val();
                 fx = $('#fx').val();
+                tax=$('#tax').val()/100;
                 profit = $('#profit').val() / 100;
                 if ($('#includeWeightInProfit').val() == 'off') {
                     includeWeight = true;
                 } else {
                     includeWeight = false;
                 }
+
                 window.alert("changed parameters");
             }
             function px_calculate() {
@@ -31,9 +34,9 @@
                 var px_before_tax = $('#px_before_tax').val();
                 var px_with_profit = 0;
                 if (includeWeight) {
-                    px_with_profit = (px_before_tax * 1.1 + shipment_fee_per_kg * weight / 1000) * (1 + profit) / fx;
+                    px_with_profit = (px_before_tax * (1+tax) + shipment_fee_per_kg * weight / 1000) * (1 + profit) / fx;
                 } else {
-                    px_with_profit = ((px_before_tax * 1.1) * (1 + profit) + shipment_fee_per_kg * weight / 1000) / fx;
+                    px_with_profit = ((px_before_tax * (1+tax)) * (1 + profit) + shipment_fee_per_kg * weight / 1000) / fx;
                 }
                 document.getElementById("px_with_profit").innerHTML = Math.round(px_with_profit);
             }
@@ -64,6 +67,8 @@
                         <h3>This is parameters panel!</h3>
                         <label for="shipment_per_kg">Shipment fee per kg</label>
                         <input type="number" name="shipment_per_kg" id="shipment_per_kg" data-clear-btn="true" pattern="[0-9]*" value="1500">
+                        <label for="tax">Tax (in %)</label>
+                        <input type="number" name="tax" id="tax" data-clear-btn="true" pattern="[0-9]*" value="0">
                         <label for="fx">USD/JPY rate</label>
                         <input type="number" name="fx" id="fx" data-clear-btn="true" pattern="[0-9]*" value="100">
                         <label for="profit">Profit (in %)</label>
