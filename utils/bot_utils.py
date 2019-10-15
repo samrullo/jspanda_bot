@@ -11,7 +11,7 @@ class BotUtil:
         TOKEN = get_token()
         URL = "https://api.telegram.org/bot{}/".format(TOKEN)
         self.URL = URL
-        self.telegraph_url = """https://api.telegra.ph/createPage?access_token={}""".format(get_telegraph_token())
+        self.telegraph_url = """https://api.telegra.ph/createPage?access_token={token}&author_name={author}""".format(token=get_telegraph_token(), author='JSPanda')
 
     def get_url(self, url):
         response = requests.get(url)

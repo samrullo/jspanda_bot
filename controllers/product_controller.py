@@ -11,6 +11,10 @@ class ProductController:
     def __init__(self, product: Product, category: Category):
         self.product = product
         self.category = category
+        self.create_page_url = butil.telegraph_url
+
+    def build_product_page(self):
+        new_page_url=self.create_page_url+"""&title={title}"""+"""&content=[{"tag":"p","children":["{description}"]},{"tag":"p","children":["{product_price}"]}]"""+"""&return_content=true"""
 
     def show_products(self, chat_id):
         logging.info("/showproducts command was passed so will send info about all products")

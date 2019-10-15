@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import render_template
 from flask import request
 import os
 from flask import session
@@ -36,6 +37,9 @@ def hello():
 def show_session():
     return "what_to_do session : {}".format(session.get('what_to_do'))
 
+@app.route('/fx')
+def fx():
+    return render_template("fxcalc.html")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
