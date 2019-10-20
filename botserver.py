@@ -5,6 +5,7 @@ import os
 from flask import session
 import json
 import logging
+from controllers.received_money_controller import ReceivedMoneyController
 
 FORMAT = '%(asctime)-15s %(message)s'
 logging.basicConfig(format=FORMAT, level=logging.INFO)
@@ -15,7 +16,7 @@ from add_product_bot import handle_update
 app = Flask(__name__)
 
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/botserver_recycled', methods=['POST', 'GET'])
 def hello():
     update = request.data.decode('utf8')
     update = json.loads(update)
@@ -33,13 +34,21 @@ def hello():
     return ""  # it is important as this return 200 success response to telegram
 
 
+@app.route('/show_received_money')
+def show_received_money():
+    received_money_obj = ReceivedMoneyController()
+    return received_money_obj.show_all_received_money()
+
+
 @app.route('/show_session')
 def show_session():
     return "what_to_do session : {}".format(session.get('what_to_do'))
 
+
 @app.route('/fx')
 def fx():
     return render_template("fxcalc.html")
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
