@@ -15,7 +15,7 @@ class ReceivedMoneyForm(FlaskForm):
 
 
 class ReceivedMoneyController:
-    def __init__(self):
+    def __init__(self,secret_key):
         self.model = ReceivedMoney()
 
     def show_all_received_money(self):

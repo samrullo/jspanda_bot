@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_wtf.csrf import CSRFProtect
 from flask import render_template
 from flask import request
 import os
@@ -15,6 +16,8 @@ _logger = logging.getLogger(__file__)
 app = Flask(__name__)
 app.config.from_object(Config)
 logging.info(f"my secret key is {app.config['SECRET_KEY']}")
+
+csrf = CSRFProtect(app)
 
 
 @app.route("/")
@@ -47,3 +50,4 @@ def fx():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
+    csrf.init_app(app)
