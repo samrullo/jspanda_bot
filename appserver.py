@@ -14,6 +14,7 @@ _logger = logging.getLogger(__file__)
 
 app = Flask(__name__)
 app.config.from_object(Config)
+logging.info(f"my secret key is {app.config['SECRET_KEY']}")
 
 
 @app.route("/")
