@@ -40,6 +40,12 @@ def received_money_remove(id=None):
     return received_money_obj.received_money_remove(id)
 
 
+@app.route('/received_money_edit/<id>', methods=['GET', 'POST'])
+def received_money_edit(id=None):
+    received_money_obj = ReceivedMoneyController()
+    return received_money_obj.received_money_edit(id)
+
+
 @app.route('/fx')
 def fx():
     return render_template("fxcalc.html")

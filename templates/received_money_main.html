@@ -8,6 +8,7 @@
     <th scope="col">Amount (JPY)</th>
     <th scope="col">Exchange rate</th>
     <th></th>
+    <th></th>
   </thead>
   <tbody>
     {% for record in received_money_records %}
@@ -17,6 +18,7 @@
       <td>{{ "{:,}".format(record[3]) }}</td>
       <td>{{ "{:,}".format(record[4]) }}</td>
       <td><a href="/received_money_remove/{{record[0]}}" class="btn btn-lg btn-dark"><i class="far fa-trash-alt"></i></a></td>
+      <td><a href="/received_money_edit/{{record[0]}}" class="btn btn-lg btn-dark"><i class="fas fa-edit"></i></a></td>
     </tr>
     {% endfor %}
   </tbody>

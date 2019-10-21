@@ -22,6 +22,14 @@ class ReceivedMoney(Model):
         self.mydb.commit()
         return
 
+    def update_item(self, id, date, amount_usd, exchange_rate):
+        amount_jpy = amount_usd * exchange_rate
+        statement = f"UPDATE `{self.table}` SET `registered_date`=%s,`amount_usd`=%s,`exchange_rate`=%s,`amount_jpy`=%s WHERE `id`={id}"
+        cursor = self.mydb.cursor()
+        cursor.execute(statement, [to_yyyymmdd(date), amount_usd, exchange_rate, amount_jpy])
+        self.mydb.commit()
+        return
+
     def remove_item(self, id):
         statement = f"DELETE FROM {self.table} WHERE id=(%s)"
         cursor = self.mydb.cursor()
