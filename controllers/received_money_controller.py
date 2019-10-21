@@ -1,6 +1,6 @@
 import datetime
 from models.received_money import ReceivedMoney
-from flask import request
+import logging
 from flask import flash
 from flask import render_template
 from flask_wtf import FlaskForm
@@ -24,6 +24,7 @@ class ReceivedMoneyController:
 
     def received_money_add(self):
         form = ReceivedMoneyForm()
+        logging.info(f"form hidden tag : {form.hidden_tag()}")
         if form.validate_on_submit():
             date = datetime.datetime.strptime(form.date.data, '%Y%m%d')
             amount_usd = int(form.amount_usd.data)
