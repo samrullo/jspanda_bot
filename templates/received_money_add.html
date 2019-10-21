@@ -2,6 +2,7 @@
 
 {% block content %}
 <form action="" method="post">
+  {{ form.csrf_token }}
   {{form.hidden_tag()}}
   <div class="form-group">
     <label for="date">Date</label>
