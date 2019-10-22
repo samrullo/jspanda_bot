@@ -23,7 +23,7 @@ class FamilySpendingForm(FlaskForm):
                   'costco_new_visa_mitsubishi', 'yahoo_visa_saitama', 'rakuten_visa_mitsubishi', 'softbank', 'solar_panel', 'proyezd',
                   'sadik', 'samira_swimming', 'samira_russian', 'denki', 'gas', 'suv', 'timur school', 'jidoushazei', 'home tax']
 
-    date = StringField("date", description="date", render_kw={"class": "form-control"})
+    date = StringField("date", description="date", render_kw={"class": "form-control", "data-clear-btn": "true"})
     mitsubishi_current_balance = IntegerField("mitsubishi_current_balance", description="mitsubishi_current_balance", render_kw={"class": "form-control", "pattern": "[0-9]*"})
     saitama_current_balance = IntegerField("saitama_current_balance", description="saitama_current_balance", render_kw={"class": "form-control", "pattern": "[0-9]*"})
     solar_to_receive = IntegerField("solar to receive", description="solar to receive", render_kw={"class": "form-control", "pattern": "[0-9]*"})
@@ -110,6 +110,13 @@ class FamilySpendingController:
                 logging.info(f"added {date} {field.label} {field.data}")
             flash(f"Added family spending for {date}", "success")
             return self.family_spending_month(date)
+        adate = datetime.date.today()
+        adate_records = self.model.get_items_by_date(datetime.date(adate.year, adate.month, 1))
+        spending_df = pd.DataFrame(columns=['id', 'date', 'name', 'amount'], data=adate_records)
+        form.date.data = adate
+        for field in form:
+            if field.description in form.cost_names and field.description != 'date':
+                field.data = spending_df.loc[spending_df['name'] == field.description, 'amount'].values[0]
         return render_template("family_spending/family_spending_add.html", form=form)
 
     def family_spending_edit(self, id):
