@@ -1,6 +1,7 @@
 import datetime
 from models.received_money import ReceivedMoney
 import logging
+import pandas as pd
 from flask import flash
 from flask import render_template
 from flask_wtf import FlaskForm
@@ -21,7 +22,11 @@ class ReceivedMoneyController:
 
     def show_all_received_money(self):
         received_money_records = self.model.get_items()
-        return render_template("received_money_main.html", received_money_records=received_money_records)
+        df = pd.DataFrame(data=received_money_records, columns=['id', 'registered_date', 'amount_usd', 'exchange_rate', 'amount_jpy'])
+        total_amount_usd = df['amount_usd'].sum()
+        total_amount_jpy = df['amount_jpy'].sum()
+        average_exchange_rate = df['exchange_rate'].mean()
+        return render_template("received_money_main.html", received_money_records=received_money_records, total_amount_usd=total_amount_usd, total_amount_jpy=total_amount_jpy, average_exchange_rate=average_exchange_rate)
 
     def received_money_add(self):
         form = ReceivedMoneyForm()
@@ -39,8 +44,7 @@ class ReceivedMoneyController:
         form = ReceivedMoneyForm()
         if form.validate_on_submit():
             if not isinstance(form.date.data, datetime.date):
-
-                date = datetime.datetime.strptime(form.date.data.replace('-',''), '%Y%m%d')
+                date = datetime.datetime.strptime(form.date.data.replace('-', ''), '%Y%m%d')
             else:
                 date = form.date.data
             amount_usd = int(form.amount_usd.data)

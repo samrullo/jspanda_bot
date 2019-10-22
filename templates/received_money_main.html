@@ -1,12 +1,13 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<h2>Total amount in usd : {{ "{:,}".format(total_amount_usd) }}, in jpy : {{ "{:,}".format(total_amount_jpy) }}, average exchange rate : {{ "{:,}".format(average_exchange_rate) }}</h2>
 <table class="table">
   <thead>
     <th scope="col">Date</th>
     <th scope="col">Amount (USD)</th>
-    <th scope="col">Amount (JPY)</th>
     <th scope="col">Exchange rate</th>
+    <th scope="col">Amount (JPY)</th>
     <th></th>
     <th></th>
   </thead>

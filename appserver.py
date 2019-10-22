@@ -7,6 +7,7 @@ import json
 import logging
 from conf.appconf import Config
 from controllers.received_money_controller import ReceivedMoneyController
+from controllers.family_spending_controller import FamilySpendingController
 
 FORMAT = '%(asctime)-15s %(message)s'
 logging.basicConfig(format=FORMAT, level=logging.INFO)
@@ -44,6 +45,30 @@ def received_money_remove(id=None):
 def received_money_edit(id=None):
     received_money_obj = ReceivedMoneyController()
     return received_money_obj.received_money_edit(id)
+
+
+@app.route("/family_spending")
+def family_spending():
+    family_spending_obj = FamilySpendingController()
+    return family_spending_obj.family_spending_main()
+
+
+@app.route("/family_spending_by_month/<month>")
+def family_spending_by_month(month):
+    family_spending_obj = FamilySpendingController()
+    return family_spending_obj.family_spending_month(month)
+
+
+@app.route("/family_spending_add")
+def family_spending_add():
+    family_spending_obj = FamilySpendingController()
+    return family_spending_obj.family_spending_add()
+
+
+@app.route("/family_spending_edit/<id>", methods=['GET', 'POST'])
+def family_spending_edit(id=None):
+    family_spending_obj = FamilySpendingController()
+    return family_spending_obj.family_spending_edit(id)
 
 
 @app.route('/fx')

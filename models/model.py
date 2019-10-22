@@ -20,3 +20,10 @@ class Model:
         cursor = self.mydb.cursor()
         cursor.execute(stmt)
         return cursor.fetchall()
+
+    def remove_item(self, id):
+        statement = f"DELETE FROM {self.table} WHERE id=(%s)"
+        cursor = self.mydb.cursor()
+        cursor.execute(statement, [id])
+        self.mydb.commit()
+        return
